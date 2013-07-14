@@ -6,7 +6,10 @@ import org.apache.commons.lang.StringUtils
 
 import emailspider.impl.extractor.EmailExtractorXpathTemplate
 import emailspider.impl.extractor.spi.Checker
+import emailspider.impl.extractor.spi.Selector
+import emailspider.impl.extractor.spi.Tool
 import emailspider.impl.extractor.spi.Transformer
+import emailspider.impl.extractor.xpath.XpathContext
 
 class Gongshang extends EmailExtractorXpathTemplate {
 
@@ -15,7 +18,9 @@ class Gongshang extends EmailExtractorXpathTemplate {
             "bankCode":"zhaoshang",
             "validStart":new SimpleDateFormat("yyyy-MM-dd").parse("2013-01-20"),
             "validEnd":new SimpleDateFormat("yyyy-MM-dd").parse("2013-01-30"),
-            "index":1
+            "index":1,
+            "checker": "(\\d{4}-\\d{1,2}-\\d{1,2})",
+            "java-checker":"name-checker"
         ]
     }
 
@@ -25,6 +30,13 @@ class Gongshang extends EmailExtractorXpathTemplate {
                 "required":true,
                 "selector": [
                     "BODY[2]>DIV[0][bg-wrap]>DIV[1][app-nameInfo-wrap cf]>DIV[0][app-name fl]>DIV[0][cf]>H1[0][ch-name cutoff fl]"
+                ],
+                "checker": "(\\d{4}-\\d{1,2}-\\d{1,2})",
+            ],
+            "key2" : [
+                "required":true,
+                "java-selector": [
+                    "test-selector"
                 ],
                 "checker": "(\\d{4}-\\d{1,2}-\\d{1,2})",
             ],
@@ -51,14 +63,15 @@ class Gongshang extends EmailExtractorXpathTemplate {
                     "BODY[2]>DIV[0][bg-wrap]>DIV[1][app-nameInfo-wrap cf]>DIV[0][app-name fl]>DIV[0][cf]>H1[1-3][ch-name cutoff fl]"
                 ],
                 "rows":[
-                    "row-checker": "(\\d{4}-\\d{1,2}-\\d{1,2})",
+                    "checker": "(\\d{4}-\\d{1,2}-\\d{1,2})",
+                    "java-checker": "(\\d{4}-\\d{1,2}-\\d{1,2})",
                     "items": [
                         "sub_key1" : [
                             "selector": [
                                 "BODY[2]>DIV[0][bg-wrap]>DIV[1][app-nameInfo-wrap cf]>DIV[0][app-name fl]>DIV[0][cf]>H1[0][ch-name cutoff fl]",
                                 "BODY[2]>DIV[0][bg-wrap]>DIV[1][app-nameInfo-wrap cf]>DIV[0][app-name fl]>DIV[0][cf]>H1[0][ch-name cutoff fl]"
                             ],
-                            "java-transformer" : "name",
+                            "java-transformer" : "name-transformer",
                             "checker": "(\\d{4}-\\d{1,2}-\\d{1,2})",
                         ],
                         "sub_key2" : [
@@ -74,9 +87,9 @@ class Gongshang extends EmailExtractorXpathTemplate {
         ]
     }
 
-    def Transformer[] transformers() {
-        return ["name": new Transformer(){
-                public String transform(String input){
+    def Tool[] tools() {
+        return ["name-transformer": new Transformer(){
+                public String transform(String input,XpathContext context){
                     if(input?.endsWith("先生")){
                         return StringUtils.substringBefore(input, "先生");
                     }
@@ -84,14 +97,15 @@ class Gongshang extends EmailExtractorXpathTemplate {
                         return StringUtils.substringBefore(input, "小姐");
                     }
                 }
-            }];
-    }
-
-    def Checker[] checkers() {
-        return ["name": new Checker(){
-                public boolean check(String input){
+            },"name-checker": new Checker(){
+                public boolean check(String input,XpathContext context){
                     return true;
                 }
-            }];
+            },"test-selector":new Selector(){
+                public String select(String text){
+                    return "a";
+                }
+            }
+        ];
     }
 }

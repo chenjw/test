@@ -2,7 +2,6 @@ package emailspider.spi;
 
 import java.util.Date;
 
-import emailspider.core.Lifecycle;
 import emailspider.model.Bill;
 
 /**

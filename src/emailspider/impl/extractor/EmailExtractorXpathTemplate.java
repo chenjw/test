@@ -1,14 +1,11 @@
 package emailspider.impl.extractor;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.regex.Pattern;
 
 import emailspider.core.Lifecycle;
 import emailspider.impl.extractor.spi.Checker;
-import emailspider.impl.extractor.spi.Transformer;
+import emailspider.impl.extractor.spi.Tool;
 import emailspider.impl.extractor.xpath.XpathEngine;
 import emailspider.model.Bill;
 import emailspider.spi.Parser;
@@ -34,7 +31,7 @@ public abstract class EmailExtractorXpathTemplate implements Parser,Lifecycle {
         return null;
     }
     
-    protected  Transformer[] transformers(){
+    protected  Tool[] tools(){
         return null;
     }
 
