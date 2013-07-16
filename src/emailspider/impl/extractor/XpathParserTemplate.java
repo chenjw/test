@@ -8,7 +8,6 @@ import org.w3c.dom.Document;
 import emailspider.core.Lifecycle;
 import emailspider.impl.extractor.spi.Checker;
 import emailspider.impl.extractor.spi.Tool;
-import emailspider.impl.extractor.xpath.XpathContextImpl;
 import emailspider.impl.extractor.xpath.XpathEngine;
 import emailspider.impl.extractor.xpath.config.KeyConfig;
 import emailspider.impl.extractor.xpath.config.ScrpitConfig;
@@ -32,11 +31,8 @@ public abstract class XpathParserTemplate implements Parser, Lifecycle {
         // 从text拿到document
         Document root = xpathEngine.clean(text);
         //
-        XpathContextImpl context = new XpathContextImpl();
         //
         Frame f = new Frame(root, rule, xpathEngine);
-        //
-        context.addFrame(f);
         f.load();
         Map<String, XpathResult> results = f.getResults();
         // 最后转换results到bill
