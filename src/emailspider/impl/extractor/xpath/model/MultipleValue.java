@@ -10,14 +10,14 @@ import emailspider.impl.extractor.xpath.XpathEngine;
 import emailspider.impl.extractor.xpath.config.KeyConfig;
 import emailspider.impl.extractor.xpath.config.MultpleConfig;
 
-public class MultipleResult extends BaseResult {
+public class MultipleValue extends BaseValue {
 
-    public MultipleResult(KeyConfig config, Frame frame, XpathEngine xpathEngine) {
+    public MultipleValue(KeyConfig config, Frame frame, XpathEngine xpathEngine) {
         super(config, frame, xpathEngine);
     }
 
     private List<Node>                     nodeList;
-    private List<Map<String, XpathResult>> results = new ArrayList<Map<String, XpathResult>>();
+    private List<Map<String, XpathValue>> values = new ArrayList<Map<String, XpathValue>>();
 
     @Override
     public void doLoad() {
@@ -29,7 +29,7 @@ public class MultipleResult extends BaseResult {
         for (Node node : nodeList) {
             FrameImpl newFrame = new FrameImpl(node, subKeyConfigs, xpathEngine);
             newFrame.load();
-            results.add(newFrame.getResults());
+            values.add(newFrame.getValues());
         }
         // ×îºócheckÏÂ
     }

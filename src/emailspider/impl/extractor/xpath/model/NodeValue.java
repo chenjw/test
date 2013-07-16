@@ -5,9 +5,9 @@ import org.w3c.dom.Node;
 import emailspider.impl.extractor.xpath.XpathEngine;
 import emailspider.impl.extractor.xpath.config.KeyConfig;
 
-public class NodeResult extends BaseResult {
+public class NodeValue extends BaseValue {
 
-    public NodeResult(KeyConfig config, Frame frame, XpathEngine xpathEngine) {
+    public NodeValue(KeyConfig config, Frame frame, XpathEngine xpathEngine) {
         super(config, frame, xpathEngine);
     }
 

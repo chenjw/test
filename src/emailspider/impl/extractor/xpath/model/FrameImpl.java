@@ -15,11 +15,11 @@ public class FrameImpl implements Frame{
     private Node                     root;
     private Map<String, KeyConfig>   config;
     protected XpathEngine            xpathEngine;
-    private Map<String, XpathResult> results = new HashMap<String, XpathResult>();
+    private Map<String, XpathValue> values = new HashMap<String, XpathValue>();
 
     public void load() {
-        for (Entry<String, XpathResult> entry : results.entrySet()) {
-            XpathResult r = entry.getValue();
+        for (Entry<String, XpathValue> entry : values.entrySet()) {
+            XpathValue r = entry.getValue();
             if (!r.isLoaded()) {
                 r.load();
             }
@@ -32,23 +32,23 @@ public class FrameImpl implements Frame{
         this.xpathEngine=xpathEngine;
         for (Entry<String, KeyConfig> entry : config.entrySet()) {
             KeyConfig c = entry.getValue();
-            XpathResult r = ResultFactory.createResult(c, this,xpathEngine);
-            results.put(entry.getKey(), r);
+            XpathValue r = ResultFactory.createResult(c, this,xpathEngine);
+            values.put(entry.getKey(), r);
         }
     }
 
-    public NodeResult getGroup(String key) {
-        XpathResult r = results.get(key);
+    public NodeValue getGroup(String key) {
+        XpathValue r = values.get(key);
         if (r == null) {
             throw new IllegalStateException(key + " group not found");
-        } else if (!(r instanceof NodeResult)) {
+        } else if (!(r instanceof NodeValue)) {
             throw new IllegalStateException(key + " not a group");
         }
-        return (NodeResult) r;
+        return (NodeValue) r;
     }
 
     public String getStringValue(String key) {
-        XpathResult r = results.get(key);
+        XpathValue r = values.get(key);
         if (r != null) {
             return r.getStringValue();
         }
@@ -63,8 +63,8 @@ public class FrameImpl implements Frame{
         return root;
     }
 
-    public Map<String, XpathResult> getResults() {
-        return results;
+    public Map<String, XpathValue> getValues() {
+        return values;
     }
 
     public FrameImpl getParent() {

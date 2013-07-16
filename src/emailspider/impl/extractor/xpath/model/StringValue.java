@@ -4,17 +4,18 @@ import emailspider.impl.extractor.xpath.XpathEngine;
 import emailspider.impl.extractor.xpath.config.KeyConfig;
 
 
-public class StringResult extends  BaseResult {
+public class StringValue extends  BaseValue {
 
 
 
 
-    public StringResult(KeyConfig config, Frame frame, XpathEngine xpathEngine) {
+    public StringValue(KeyConfig config, Frame frame, XpathEngine xpathEngine) {
         super(config, frame, xpathEngine);
     }
 
     @Override
     public void doLoad() {
+
     }
 
     @Override

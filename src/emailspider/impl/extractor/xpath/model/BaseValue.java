@@ -3,7 +3,7 @@ package emailspider.impl.extractor.xpath.model;
 import emailspider.impl.extractor.xpath.XpathEngine;
 import emailspider.impl.extractor.xpath.config.KeyConfig;
 
-public abstract class BaseResult implements XpathResult {
+public abstract class BaseValue implements XpathValue {
     protected KeyConfig config;
     private boolean     loaded=false;
     protected Frame       frame;
@@ -18,7 +18,7 @@ public abstract class BaseResult implements XpathResult {
         }
     }
 
-    public BaseResult(KeyConfig config, Frame frame, XpathEngine xpathEngine) {
+    public BaseValue(KeyConfig config, Frame frame, XpathEngine xpathEngine) {
         this.config = config;
         this.frame = frame;
         this.xpathEngine = xpathEngine;

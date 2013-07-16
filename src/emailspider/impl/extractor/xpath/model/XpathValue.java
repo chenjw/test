@@ -2,7 +2,7 @@ package emailspider.impl.extractor.xpath.model;
 
 
 
-public interface XpathResult {
+public interface XpathValue {
     
     /**
      * 是否抽取成功
