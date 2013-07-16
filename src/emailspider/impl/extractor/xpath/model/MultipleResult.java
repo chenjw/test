@@ -7,35 +7,38 @@ import java.util.Map;
 import org.w3c.dom.Node;
 
 import emailspider.impl.extractor.xpath.XpathContext;
+import emailspider.impl.extractor.xpath.XpathEngine;
 import emailspider.impl.extractor.xpath.config.KeyConfig;
 import emailspider.impl.extractor.xpath.config.MultpleConfig;
 
+public class MultipleResult extends BaseResult {
 
-public class MultipleResult extends  BaseResult {
-    private List<Node> nodeList;
-    private List<Map<String, XpathResult>> results=new ArrayList<Map<String, XpathResult>>();
-    
-    public MultipleResult(KeyConfig config) {
-        super(config);
+    public MultipleResult(KeyConfig config, Frame frame, XpathEngine xpathEngine) {
+        super(config, frame, xpathEngine);
     }
-    
-   
+
+    private List<Node>                     nodeList;
+    private List<Map<String, XpathResult>> results = new ArrayList<Map<String, XpathResult>>();
 
     @Override
-    public void load(XpathContext context) {
-        
+    public void doLoad() {
+
         // TODO 取得nodeList的值
-        
-        
-        MultpleConfig multpleConfig=this.getConfig().getRows();
-        Map<String,KeyConfig> subKeyConfigs=multpleConfig.getItems();
-        for(Node node:nodeList){
-            Frame newFrame=new Frame(node,subKeyConfigs);
-            context.addFrame(newFrame);
-            newFrame.load(context);
+
+        MultpleConfig multpleConfig = config.getRows();
+        Map<String, KeyConfig> subKeyConfigs = multpleConfig.getItems();
+        for (Node node : nodeList) {
+            Frame newFrame = new Frame(node, subKeyConfigs, xpathEngine);
+            newFrame.load();
             results.add(newFrame.getResults());
         }
         // 最后check下
     }
-    
+
+    @Override
+    public String getStringValue() {
+        throw new java.lang.IllegalStateException("multiple node have no string value "
+                                                  + config.getKey());
+    }
+
 }

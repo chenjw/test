@@ -14,6 +14,7 @@ import org.htmlcleaner.HtmlCleaner;
 import org.htmlcleaner.TagNode;
 import org.htmlcleaner.XPatherException;
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
@@ -21,7 +22,7 @@ import emailspider.impl.extractor.xpath.XpathEngine;
 
 public class HtmlcleanerXpathEngineImpl implements XpathEngine {
 
-    @Override
+
     public String parse(String text, String path) {
       //  path = StringUtils.upperCase(path);
         HtmlCleaner cleaner = new HtmlCleaner();
@@ -35,8 +36,25 @@ public class HtmlcleanerXpathEngineImpl implements XpathEngine {
       return null;
     }
 
+
+
     @Override
-    public List<String> multiParse(String text, String path) {
+    public Document clean(String text) {
+        return null;
+    }
+
+    @Override
+    public Node parseNode(String text, String path) {
+        return null;
+    }
+
+    @Override
+    public String parseString(Node node, String path) {
+        return null;
+    }
+
+    @Override
+    public List<Node> parseList(Node node, String path) {
         return null;
     }
 }

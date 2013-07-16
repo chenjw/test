@@ -17,7 +17,7 @@ public abstract class JqueryParserTemplate implements Parser {
     public Bill parse(String  text) {
         for (Entry<String, String> entry : getXpath().entrySet()) {
             String key = entry.getKey();
-            xpathEngine.parse(text, entry.getValue());
+            //xpathEngine.parse(text, entry.getValue());
         }
         return null;
     }

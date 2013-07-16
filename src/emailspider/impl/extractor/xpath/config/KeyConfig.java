@@ -3,11 +3,12 @@ package emailspider.impl.extractor.xpath.config;
 import java.util.regex.Pattern;
 
 import emailspider.impl.extractor.spi.Selector;
+import emailspider.impl.extractor.xpath.model.TypeEnum;
 
 public class KeyConfig {
     private String        key;
     private boolean       required = false;
-    private boolean       multiple = false;
+    private TypeEnum      type     = TypeEnum.STRING;
     private String[]      selector = null;
     private Pattern       checker;
     private Selector      javaSelector;
@@ -31,12 +32,12 @@ public class KeyConfig {
         this.required = required;
     }
 
-    public boolean isMultiple() {
-        return multiple;
+    public TypeEnum getType() {
+        return type;
     }
 
-    public void setMultiple(boolean multiple) {
-        this.multiple = multiple;
+    public void setType(TypeEnum type) {
+        this.type = type;
     }
 
     public String[] getSelector() {

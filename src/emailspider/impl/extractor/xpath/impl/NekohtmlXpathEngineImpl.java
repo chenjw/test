@@ -11,6 +11,7 @@ import javax.xml.xpath.XPathFactory;
 import org.apache.commons.lang.StringUtils;
 import org.cyberneko.html.parsers.DOMParser;
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
@@ -18,7 +19,7 @@ import emailspider.impl.extractor.xpath.XpathEngine;
 
 public class NekohtmlXpathEngineImpl implements XpathEngine {
 
-    @Override
+
     public String parse(String text, String path) {
 
         DOMParser parser = new DOMParser();
@@ -66,7 +67,22 @@ public class NekohtmlXpathEngineImpl implements XpathEngine {
     }
 
     @Override
-    public List<String> multiParse(String text, String path) {
+    public Document clean(String text) {
+        return null;
+    }
+
+    @Override
+    public Node parseNode(String text, String path) {
+        return null;
+    }
+
+    @Override
+    public String parseString(Node node, String path) {
+        return null;
+    }
+
+    @Override
+    public List<Node> parseList(Node node, String path) {
         return null;
     }
 }
