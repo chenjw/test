@@ -12,6 +12,7 @@ import emailspider.impl.extractor.xpath.XpathEngine;
 import emailspider.impl.extractor.xpath.config.KeyConfig;
 import emailspider.impl.extractor.xpath.config.ScrpitConfig;
 import emailspider.impl.extractor.xpath.model.Frame;
+import emailspider.impl.extractor.xpath.model.FrameImpl;
 import emailspider.impl.extractor.xpath.model.XpathResult;
 import emailspider.model.Bill;
 import emailspider.spi.Parser;
@@ -32,7 +33,7 @@ public abstract class XpathParserTemplate implements Parser, Lifecycle {
         Document root = xpathEngine.clean(text);
         //
         //
-        Frame f = new Frame(root, rule, xpathEngine);
+        FrameImpl f = new FrameImpl(root, rule, xpathEngine);
         f.load();
         Map<String, XpathResult> results = f.getResults();
         // 最后转换results到bill

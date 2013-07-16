@@ -27,7 +27,7 @@ public class MultipleResult extends BaseResult {
         MultpleConfig multpleConfig = config.getRows();
         Map<String, KeyConfig> subKeyConfigs = multpleConfig.getItems();
         for (Node node : nodeList) {
-            Frame newFrame = new Frame(node, subKeyConfigs, xpathEngine);
+            FrameImpl newFrame = new FrameImpl(node, subKeyConfigs, xpathEngine);
             newFrame.load();
             results.add(newFrame.getResults());
         }
