@@ -8,7 +8,7 @@ import emailspider.impl.extractor.xpath.XpathEngine;
 import emailspider.model.Bill;
 import emailspider.spi.Parser;
 
-public abstract class EmailExtractorJqueryTemplate implements Parser {
+public abstract class JqueryParserTemplate implements Parser {
     private XpathEngine xpathEngine;
 
     protected abstract Map<String, String> getXpath();

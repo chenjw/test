@@ -11,9 +11,9 @@ import emailspider.impl.extractor.spi.Tool
 import emailspider.impl.extractor.spi.Transformer
 import emailspider.impl.extractor.xpath.XpathContext
 
-class Zhaoshang1 extends XpathParserTemplate {
+class Zhaoshang2 extends XpathParserTemplate {
 
-    def  Map config() {
+    def Map config() {
         return [
             "bankCode":"zhaoshang",
             "validStart":new SimpleDateFormat("yyyy-MM-dd").parse("2013-01-20"),

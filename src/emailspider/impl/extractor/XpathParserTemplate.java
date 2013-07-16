@@ -10,7 +10,7 @@ import emailspider.impl.extractor.xpath.XpathEngine;
 import emailspider.model.Bill;
 import emailspider.spi.Parser;
 
-public abstract class EmailExtractorXpathTemplate implements Parser,Lifecycle {
+public abstract class XpathParserTemplate implements Parser,Lifecycle {
     private XpathEngine xpathEngine;
 
     public void init() {

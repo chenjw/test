@@ -5,7 +5,7 @@ import java.util.Date;
 import emailspider.model.Bill;
 import emailspider.spi.Parser;
 
-public  class EmailExtractorJavaTemplate implements Parser {
+public  class JavaParserTemplate implements Parser {
 
     public void init() {
 
