@@ -6,7 +6,6 @@ import java.util.Map;
 
 import org.w3c.dom.Node;
 
-import emailspider.impl.extractor.xpath.XpathContext;
 import emailspider.impl.extractor.xpath.XpathEngine;
 import emailspider.impl.extractor.xpath.config.KeyConfig;
 import emailspider.impl.extractor.xpath.config.MultpleConfig;

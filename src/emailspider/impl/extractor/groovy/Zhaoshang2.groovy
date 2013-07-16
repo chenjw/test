@@ -9,7 +9,7 @@ import emailspider.impl.extractor.spi.Checker
 import emailspider.impl.extractor.spi.Selector
 import emailspider.impl.extractor.spi.Tool
 import emailspider.impl.extractor.spi.Transformer
-import emailspider.impl.extractor.xpath.XpathContext
+import emailspider.impl.extractor.xpath.model.Frame
 
 class Zhaoshang2 extends XpathParserTemplate {
 
@@ -89,7 +89,7 @@ class Zhaoshang2 extends XpathParserTemplate {
 
     def Tool[] tools() {
         return ["name-transformer": new Transformer(){
-                public String transform(String input,XpathContext context){
+                public String transform(String input,Frame context){
                     if(input?.endsWith("先生")){
                         return StringUtils.substringBefore(input, "先生");
                     }
@@ -98,7 +98,7 @@ class Zhaoshang2 extends XpathParserTemplate {
                     }
                 }
             },"name-checker": new Checker(){
-                public boolean check(String input,XpathContext context){
+                public boolean check(String input,Frame context){
                     return true;
                 }
             },"test-selector":new Selector(){
