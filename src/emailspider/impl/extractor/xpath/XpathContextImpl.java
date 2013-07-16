@@ -2,6 +2,8 @@ package emailspider.impl.extractor.xpath;
 
 import java.util.Stack;
 
+import org.springframework.util.Assert;
+
 import emailspider.impl.extractor.xpath.model.Frame;
 import emailspider.impl.extractor.xpath.model.GroupResult;
 import emailspider.impl.extractor.xpath.model.XpathResult;
@@ -17,22 +19,29 @@ public class XpathContextImpl implements XpathContext {
     // 已经解析的字段值
     private Stack<Frame> parseStack = new Stack<Frame>();
 
+    
     public void addFrame(Frame frame) {
         parseStack.add(frame);
     }
+    
+    public void removeFrame(Frame frame) {
+       Frame f= parseStack.pop();
+       Assert.isTrue(f==frame);
+    }
 
+    
     /**
      * 实现
      * 
      * @param r
      */
-    public void extract(XpathResult r){
+    public void load(XpathResult r){
         
     }
     
     private String getFromXpathResult(XpathResult r) {
-        if(!r.isExtracted()){
-            extract(r);
+        if(!r.isLoaded()){
+            load(r);
         }
         return null;
     }

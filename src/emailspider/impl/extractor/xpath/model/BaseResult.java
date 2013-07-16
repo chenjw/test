@@ -1,15 +1,29 @@
 package emailspider.impl.extractor.xpath.model;
 
+import emailspider.impl.extractor.xpath.config.KeyConfig;
 
-public class BaseResult implements XpathResult {
-    private boolean extracted;
+public abstract class BaseResult implements XpathResult {
+    private KeyConfig config;
+    private boolean   loaded;
 
-    public boolean isExtracted() {
-        return extracted;
+    public BaseResult(KeyConfig config) {
+        this.config = config;
     }
-    public void setExtracted(boolean extracted) {
-        this.extracted = extracted;
+
+    public boolean isLoaded() {
+        return loaded;
     }
-    
+
+    public void setLoaded(boolean loaded) {
+        this.loaded = loaded;
+    }
+
+    public KeyConfig getConfig() {
+        return config;
+    }
+
+    public void setConfig(KeyConfig config) {
+        this.config = config;
+    }
 
 }

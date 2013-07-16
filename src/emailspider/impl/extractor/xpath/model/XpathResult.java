@@ -1,5 +1,7 @@
 package emailspider.impl.extractor.xpath.model;
 
+import emailspider.impl.extractor.xpath.XpathContext;
+
 
 public interface XpathResult {
     
@@ -9,5 +11,7 @@ public interface XpathResult {
      * 
      * @return
      */
-    public boolean isExtracted();
+    public boolean isLoaded();
+    
+    public void load(XpathContext context);
 }
